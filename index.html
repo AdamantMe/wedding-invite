@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Daniel & Oksana — Wedding Invitation</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <a class="brand" href="#welcome"
+          >Daniel <span class="amp">&</span> Oksana</a
+        >
+        <nav class="nav">
+          <a href="#welcome">Welcome</a>
+          <a href="#colors">Colors</a>
+          <a href="#plan">Plan</a>
+          <a href="#story">Our Story</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Section 1 -->
+      <section id="welcome" class="section hero">
+        <div class="container">
+          <div class="reveal">
+            <p class="eyebrow">Wedding Invitation</p>
+            <h1>Welcome to our wedding invitation</h1>
+            <p class="lead">
+              We’re Daniel and Oksana. We’re excited to celebrate with you.
+            </p>
+
+            <div class="hero__meta">
+              <div class="pill">Date: <span class="muted">TBD</span></div>
+              <div class="pill">City: <span class="muted">TBD</span></div>
+              <div class="pill">Dress code: <span class="muted">TBD</span></div>
+            </div>
+
+            <div class="hero__actions">
+              <a class="btn" href="#plan">See the plan</a>
+              <a class="btn btn--ghost" href="#colors">Pick a palette</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero__bg" aria-hidden="true"></div>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="colors" class="section">
+        <div class="container">
+          <div class="section__head reveal">
+            <h2>Colors</h2>
+            <p class="muted">
+              Click a circle to open a separate page with references for that
+              palette.
+            </p>
+          </div>
+
+          <div class="palette-grid reveal">
+            <a
+              class="palette-card"
+              href="color.html?palette=rose"
+              aria-label="Rose palette"
+            >
+              <div class="swatch" style="--c: #c06c84"></div>
+              <div class="swatch" style="--c: #f67280"></div>
+              <div class="swatch" style="--c: #f8b195"></div>
+              <div class="swatch" style="--c: #355c7d"></div>
+              <div class="swatch" style="--c: #6c5b7b"></div>
+              <div class="palette-card__label">Rose</div>
+            </a>
+
+            <a
+              class="palette-card"
+              href="color.html?palette=sage"
+              aria-label="Sage palette"
+            >
+              <div class="swatch" style="--c: #a3b18a"></div>
+              <div class="swatch" style="--c: #dad7cd"></div>
+              <div class="swatch" style="--c: #588157"></div>
+              <div class="swatch" style="--c: #3a5a40"></div>
+              <div class="swatch" style="--c: #344e41"></div>
+              <div class="palette-card__label">Sage</div>
+            </a>
+
+            <a
+              class="palette-card"
+              href="color.html?palette=navy"
+              aria-label="Navy palette"
+            >
+              <div class="swatch" style="--c: #0b1320"></div>
+              <div class="swatch" style="--c: #1c2541"></div>
+              <div class="swatch" style="--c: #3a506b"></div>
+              <div class="swatch" style="--c: #5bc0be"></div>
+              <div class="swatch" style="--c: #f4f1de"></div>
+              <div class="palette-card__label">Navy</div>
+            </a>
+
+            <a
+              class="palette-card"
+              href="color.html?palette=champagne"
+              aria-label="Champagne palette"
+            >
+              <div class="swatch" style="--c: #f7e7ce"></div>
+              <div class="swatch" style="--c: #ead2ac"></div>
+              <div class="swatch" style="--c: #c9a227"></div>
+              <div class="swatch" style="--c: #5d4037"></div>
+              <div class="swatch" style="--c: #faf3e0"></div>
+              <div class="palette-card__label">Champagne</div>
+            </a>
+
+            <a
+              class="palette-card"
+              href="color.html?palette=lavender"
+              aria-label="Lavender palette"
+            >
+              <div class="swatch" style="--c: #cdb4db"></div>
+              <div class="swatch" style="--c: #ffc8dd"></div>
+              <div class="swatch" style="--c: #ffafcc"></div>
+              <div class="swatch" style="--c: #bde0fe"></div>
+              <div class="swatch" style="--c: #a2d2ff"></div>
+              <div class="palette-card__label">Lavender</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="plan" class="section section--alt">
+        <div class="container">
+          <div class="section__head reveal">
+            <h2>The plan</h2>
+            <p class="muted">
+              Replace the placeholders with embedded Google Maps iframes.
+            </p>
+          </div>
+
+          <div class="plan-grid">
+            <article class="card reveal">
+              <h3>Meeting place</h3>
+              <p class="muted">Google Maps embed placeholder</p>
+              <div class="map-placeholder">
+                <div class="map-placeholder__inner">MAP #1</div>
+              </div>
+              <ul class="bullets">
+                <li>Time: <span class="muted">TBD</span></li>
+                <li>Address: <span class="muted">TBD</span></li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <h3>Free time</h3>
+              <p class="muted">Ideas: photos, walk, coffee, rest.</p>
+              <ul class="bullets">
+                <li>Start: <span class="muted">TBD</span></li>
+                <li>End: <span class="muted">TBD</span></li>
+                <li>Notes: <span class="muted">TBD</span></li>
+              </ul>
+            </article>
+
+            <article class="card reveal">
+              <h3>Party place</h3>
+              <p class="muted">Google Maps embed placeholder</p>
+              <div class="map-placeholder">
+                <div class="map-placeholder__inner">MAP #2</div>
+              </div>
+              <ul class="bullets">
+                <li>Time: <span class="muted">TBD</span></li>
+                <li>Address: <span class="muted">TBD</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="story" class="section">
+        <div class="container">
+          <div class="section__head reveal">
+            <h2>Our story</h2>
+            <p class="muted">
+              Add your text and replace placeholders with real images.
+            </p>
+          </div>
+
+          <div class="story-grid">
+            <div class="story-text card reveal">
+              <h3>How it started</h3>
+              <p>
+                Placeholder text. Write 5–8 lines max. Nobody reads walls of
+                text on invitations. Keep it crisp: where you met, a milestone,
+                and what you’re celebrating.
+              </p>
+              <p class="muted">
+                Tip: keep names and dates consistent across the entire site.
+              </p>
+            </div>
+
+            <div class="photo-grid reveal">
+              <div class="photo ph1"><span>PHOTO</span></div>
+              <div class="photo ph2"><span>PHOTO</span></div>
+              <div class="photo ph3"><span>PHOTO</span></div>
+              <div class="photo ph4"><span>PHOTO</span></div>
+              <div class="photo ph5"><span>PHOTO</span></div>
+              <div class="photo ph6"><span>PHOTO</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer__inner">
+          <div>Daniel & Oksana</div>
+          <div class="muted">© <span id="year"></span></div>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
