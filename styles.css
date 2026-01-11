@@ -534,3 +534,37 @@ h3 {
     grid-template-columns: 1fr;
   }
 }
+
+.day-block {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.day-head {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(42, 34, 48, 0.08);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: 0 12px 24px rgba(26, 15, 34, 0.06);
+}
+
+.day-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.day-subtitle {
+  margin: 6px 0 0 0;
+}
+
+.plan-wide {
+  grid-column: 1 / -1;
+}
+
+/* Day 2 is a single card centered */
+.plan-grid--day2 {
+  grid-template-columns: 1fr;
+}

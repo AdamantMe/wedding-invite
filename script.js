@@ -29,7 +29,7 @@ if (y) y.textContent = new Date().getFullYear();
 
   const ctx = canvas.getContext("2d", { alpha: true });
 
-  // Soft wedding palette for fireworks
+  // Soft wedding palette
   const COLORS = [
     "#F2A7B5",
     "#FFD7E0",
@@ -39,12 +39,36 @@ if (y) y.textContent = new Date().getFullYear();
     "#F3DEC3",
   ];
 
+  // Mobile tuning
+  const isMobile =
+    window.matchMedia("(max-width: 720px)").matches || "ontouchstart" in window;
+
+  // Global tuning (slower + calmer)
+  const SETTINGS = {
+    burstEveryMs: isMobile ? 2200 : 1800, // slower on phones
+    countMin: isMobile ? 35 : 55, // fewer particles on phones
+    countMax: isMobile ? 60 : 90,
+    speedMin: isMobile ? 40 : 55, // pixels/second (time-based)
+    speedMax: isMobile ? 95 : 140,
+    lifeMin: isMobile ? 1.8 : 2.2, // seconds
+    lifeMax: isMobile ? 3.0 : 3.6,
+    coreRMin: isMobile ? 1.6 : 2.0,
+    coreRMax: isMobile ? 3.2 : 4.0,
+    gravityMin: isMobile ? 18 : 22, // px/s^2
+    gravityMax: isMobile ? 38 : 46,
+    dragMin: 0.985,
+    dragMax: 0.993,
+    glowMul: isMobile ? 6.2 : 7.8, // glow radius multiplier
+    fadeAlpha: isMobile ? 0.12 : 0.1, // higher = shorter trails
+  };
+
   let running = false;
   let rafId = 0;
-  let lastBurst = 0;
+  let lastBurstAt = 0;
+  let lastFrameAt = 0;
 
   const particles = [];
-  const MAX_PARTICLES = 1200;
+  const MAX_PARTICLES = isMobile ? 520 : 950;
 
   function rand(min, max) {
     return Math.random() * (max - min) + min;
@@ -75,10 +99,11 @@ if (y) y.textContent = new Date().getFullYear();
   }
 
   function drawGlow(x, y, coreR, color, alpha) {
-    const glowR = coreR * 7.5; // bigger/wider
+    const glowR = coreR * SETTINGS.glowMul;
     const g = ctx.createRadialGradient(x, y, 0, x, y, glowR);
-    g.addColorStop(0, hexToRgba(color, alpha * 0.55));
-    g.addColorStop(0.25, hexToRgba(color, alpha * 0.2));
+    g.addColorStop(0, hexToRgba(color, alpha * 0.22));
+    g.addColorStop(0.22, hexToRgba(color, alpha * 0.07));
+
     g.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = g;
     ctx.beginPath();
@@ -87,29 +112,28 @@ if (y) y.textContent = new Date().getFullYear();
   }
 
   function burst(cx, cy) {
-    // bigger + wider, not fast
-    const count = rand(95, 150) | 0;
-    const color = pick(COLORS);
+    const count = rand(SETTINGS.countMin, SETTINGS.countMax) | 0;
+    const baseColor = pick(COLORS);
 
     for (let i = 0; i < count; i++) {
       const a = rand(0, Math.PI * 2);
+      const speed = rand(SETTINGS.speedMin, SETTINGS.speedMax); // px/s
+      const coreR = rand(SETTINGS.coreRMin, SETTINGS.coreRMax);
+      const life = rand(SETTINGS.lifeMin, SETTINGS.lifeMax); // seconds
 
-      // wider spread, moderate speed (not “fast”)
-      const speed = rand(1.6, 4.2);
-      const r = rand(2.4, 4.8);
-      const life = rand(85, 140); // longer life
+      const color = Math.random() < 0.22 ? pick(COLORS) : baseColor;
 
       particles.push({
         x: cx,
         y: cy,
         vx: Math.cos(a) * speed,
         vy: Math.sin(a) * speed,
-        drag: rand(0.988, 0.996),
-        g: rand(0.012, 0.028),
-        r,
+        drag: rand(SETTINGS.dragMin, SETTINGS.dragMax),
+        g: rand(SETTINGS.gravityMin, SETTINGS.gravityMax),
+        r: coreR,
         life,
         maxLife: life,
-        color: Math.random() < 0.18 ? pick(COLORS) : color,
+        color,
       });
     }
 
@@ -124,38 +148,54 @@ if (y) y.textContent = new Date().getFullYear();
     const w = hero.clientWidth;
     const h = hero.clientHeight;
 
-    ctx.clearRect(0, 0, w, h);
+    // dt in seconds, clamped (prevents tab-switch jump)
+    const dt = Math.min(
+      0.033,
+      Math.max(0.01, (now - (lastFrameAt || now)) / 1000)
+    );
+    lastFrameAt = now;
 
-    // Slower burst rate
-    if (now - lastBurst > 1400) {
-      lastBurst = now;
+    // Smooth trails (instead of hard clear)
+    // Smooth trails WITHOUT turning the canvas white:
+    // erase a little of the previous frame each tick
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = `rgba(0,0,0,${SETTINGS.fadeAlpha})`;
+    ctx.fillRect(0, 0, w, h);
 
-      // Place bursts mostly behind center/top area (looks romantic, not chaotic)
-      const x = rand(w * 0.2, w * 0.8);
-      const y = rand(h * 0.12, h * 0.58);
+    // back to normal drawing
+    ctx.globalCompositeOperation = "source-over";
+    ctx.globalAlpha = 1;
+
+    // slower bursts, with slight randomness so it feels organic
+    if (now - lastBurstAt > SETTINGS.burstEveryMs + rand(-250, 250)) {
+      lastBurstAt = now;
+
+      // keep them mostly behind names (center-top), not corners
+      const x = rand(w * 0.22, w * 0.78);
+      const y = rand(h * 0.12, h * 0.52);
       burst(x, y);
     }
 
-    // Additive glow
+    // Additive glow for fireworks
     ctx.globalCompositeOperation = "lighter";
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
 
-      p.vx *= p.drag;
-      p.vy *= p.drag;
-      p.vy += p.g;
+      // time-based physics
+      p.vx *= Math.pow(p.drag, dt * 60);
+      p.vy *= Math.pow(p.drag, dt * 60);
+      p.vy += p.g * dt;
 
-      p.x += p.vx;
-      p.y += p.vy;
+      p.x += p.vx * dt;
+      p.y += p.vy * dt;
 
-      p.life -= 1;
+      p.life -= dt;
 
       const a = Math.max(0, p.life / p.maxLife);
 
-      // Glow + core
       drawGlow(p.x, p.y, p.r, p.color, a);
-      ctx.globalAlpha = a * 0.85;
+      ctx.globalAlpha = a * 0.45;
       ctx.fillStyle = p.color;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -163,10 +203,10 @@ if (y) y.textContent = new Date().getFullYear();
 
       if (
         p.life <= 0 ||
-        p.x < -140 ||
-        p.x > w + 140 ||
-        p.y < -140 ||
-        p.y > h + 140
+        p.x < -180 ||
+        p.x > w + 180 ||
+        p.y < -180 ||
+        p.y > h + 180
       ) {
         particles.splice(i, 1);
       }
@@ -182,7 +222,12 @@ if (y) y.textContent = new Date().getFullYear();
     if (running) return;
     running = true;
     resizeToHero();
-    lastBurst = performance.now();
+    lastBurstAt = performance.now() - 600; // start soon, but not instantly
+    lastFrameAt = 0;
+
+    // clear once
+    ctx.clearRect(0, 0, hero.clientWidth, hero.clientHeight);
+
     rafId = requestAnimationFrame(step);
   }
 
@@ -190,19 +235,26 @@ if (y) y.textContent = new Date().getFullYear();
     running = false;
     cancelAnimationFrame(rafId);
     particles.length = 0;
-    const w = hero.clientWidth;
-    const h = hero.clientHeight;
-    ctx.clearRect(0, 0, w, h);
+    ctx.clearRect(0, 0, hero.clientWidth, hero.clientHeight);
   }
 
-  // Run fireworks only while hero is on screen
+  // Pause when hidden (mobile battery + prevents jump)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else {
+      // only restart if hero is visible
+      // (IntersectionObserver will handle it anyway)
+    }
+  });
+
+  // Run only while hero is visible
   const heroIO = new IntersectionObserver(
     (entries) => {
       const on = entries.some((e) => e.isIntersecting);
       if (on) start();
       else stop();
     },
-    { threshold: 0.35 }
+    { threshold: isMobile ? 0.25 : 0.35 }
   );
 
   heroIO.observe(hero);
