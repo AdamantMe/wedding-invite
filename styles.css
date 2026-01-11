@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
 
+/* =========================
+   TOKENS
+========================= */
 :root {
   --bg: #fff7fb;
   --bg2: #f7fbff;
@@ -16,6 +19,18 @@
   --header-h: 68px;
 }
 
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
@@ -29,14 +44,6 @@ html {
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-html,
-body {
-  height: 100%;
-}
-
 body {
   margin: 0;
   overflow-x: hidden;
@@ -46,7 +53,7 @@ body {
   background: var(--bg);
 }
 
-/* soft pastel background without seams */
+/* Soft pastel background without seams */
 body::before {
   content: "";
   position: fixed;
@@ -76,7 +83,13 @@ body::before {
   margin: 0 auto;
 }
 
-/* Header */
+.muted {
+  color: var(--muted);
+}
+
+/* =========================
+   HEADER / NAV
+========================= */
 .topbar {
   position: sticky;
   top: 0;
@@ -114,7 +127,9 @@ body::before {
   background: rgba(255, 255, 255, 0.65);
 }
 
-/* Sections: centered + snap */
+/* =========================
+   SECTIONS
+========================= */
 .section {
   min-height: calc(100vh - var(--header-h));
   display: flex;
@@ -131,10 +146,10 @@ body::before {
   border-bottom: 1px solid rgba(42, 34, 48, 0.06);
 }
 
-/* Headings */
 .section__head {
   margin-bottom: 20px;
 }
+
 .section__head h2 {
   margin: 0 0 8px 0;
   font-family: "Cormorant Garamond", serif;
@@ -150,11 +165,9 @@ h3 {
   font-size: 26px;
 }
 
-.muted {
-  color: var(--muted);
-}
-
-/* Hero */
+/* =========================
+   HERO
+========================= */
 .hero {
   position: relative;
   overflow: hidden;
@@ -192,7 +205,6 @@ h3 {
   color: rgba(42, 34, 48, 0.78);
 }
 
-/* Date + City big and centered */
 .hero__meta {
   display: flex;
   justify-content: center;
@@ -224,7 +236,6 @@ h3 {
   font-weight: 700;
 }
 
-/* Buttons centered */
 .hero__actions {
   display: flex;
   justify-content: center;
@@ -232,6 +243,7 @@ h3 {
   flex-wrap: wrap;
 }
 
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -265,12 +277,14 @@ h3 {
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* behind text, above hero background */
+  z-index: 1;
   pointer-events: none;
   opacity: 0.95;
 }
 
-/* Card + grids */
+/* =========================
+   CARDS
+========================= */
 .card {
   background: var(--card);
   border: 1px solid rgba(42, 34, 48, 0.1);
@@ -279,11 +293,19 @@ h3 {
   padding: 18px;
 }
 
-/* Palette */
+/* =========================
+   PALETTES
+========================= */
 .palette-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   gap: 14px;
+  grid-template-columns: repeat(5, 1fr); /* default */
+}
+
+/* Modifier: 4 items layout (2x2 on desktop) */
+.palette-grid--4 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .palette-card {
@@ -293,7 +315,7 @@ h3 {
   box-shadow: 0 12px 30px rgba(26, 15, 34, 0.08);
   text-decoration: none;
   color: var(--text);
-  padding: 18px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,6 +333,7 @@ h3 {
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .swatch {
@@ -322,219 +345,58 @@ h3 {
   box-shadow: 0 12px 24px rgba(26, 15, 34, 0.1);
 }
 
+/* Modifier: rectangle swatches */
+.swatches-row--rect {
+  gap: 10px;
+}
+
+.swatch--rect {
+  flex: 1 1 0;
+  width: auto;
+  height: 56px;
+  border-radius: 14px;
+}
+
 .palette-card__label {
   font-family: "Cormorant Garamond", serif;
   font-size: 22px;
   font-weight: 700;
   color: rgba(42, 34, 48, 0.72);
+  text-align: center;
 }
 
-/* Plan */
+/* Reference image under palettes */
+.palette-ref {
+  margin: 18px auto 0;
+  width: min(920px, 100%);
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(42, 34, 48, 0.1);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 18px 50px rgba(26, 15, 34, 0.1);
+}
+
+.palette-ref img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   PLAN
+========================= */
 .plan-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-.map-placeholder {
-  height: 220px;
-  border-radius: 18px;
-  border: 1px dashed rgba(42, 34, 48, 0.18);
-  background: rgba(255, 255, 255, 0.55);
-  display: grid;
-  place-items: center;
-  margin: 12px 0;
+/* Modifier: Day 2 single column */
+.plan-grid--day2 {
+  grid-template-columns: 1fr;
 }
 
-.map-placeholder__inner {
-  color: rgba(42, 34, 48, 0.45);
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  font-size: 12px;
-}
-
-.bullets {
-  margin: 0;
-  padding-left: 18px;
-  color: rgba(42, 34, 48, 0.7);
-}
-
-/* Story */
-.story-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 1.9fr;
-  gap: 16px;
-  align-items: start;
-}
-
-.photo {
-  height: 220px;
-  border-radius: 20px;
-  border: 1px solid rgba(42, 34, 48, 0.1);
-  background: rgba(255, 255, 255, 0.62);
-  overflow: hidden;
-  box-shadow: 0 12px 24px rgba(26, 15, 34, 0.1);
-  margin: 0;
-}
-
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transform: scale(1.02);
-  transition: transform 0.35s ease;
-}
-
-.photo:hover img {
-  transform: scale(1.08);
-}
-
-/* Footer */
-.footer {
-  border-top: 1px solid rgba(42, 34, 48, 0.1);
-  padding: 24px 0;
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.footer__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    transition: none;
-    opacity: 1;
-    transform: none;
-  }
-  #heroFx {
-    display: none;
-  }
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .palette-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .plan-grid {
-    grid-template-columns: 1fr;
-  }
-  .story-grid {
-    grid-template-columns: 1fr;
-  }
-  .hero__names {
-    font-size: 96px;
-  }
-}
-
-@media (max-width: 720px) {
-  html {
-    scroll-snap-type: none;
-  }
-  .nav {
-    display: none;
-  }
-  .palette-grid {
-    grid-template-columns: 1fr;
-  }
-  .hero__names {
-    font-size: 74px;
-  }
-  .hero__subtitle {
-    font-size: 22px;
-  }
-  .meta-pill {
-    min-width: 160px;
-  }
-}
-.map-embed {
-  height: 240px;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid rgba(42, 34, 48, 0.1);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 12px 30px rgba(26, 15, 34, 0.08);
-  margin: 12px 0;
-}
-
-.map-embed iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-/* Story: full-width text on top, grid below */
-.story-stack {
-  display: grid;
-  gap: 16px;
-}
-
-.story-card p {
-  margin: 0;
-  line-height: 1.7;
-  color: rgba(42, 34, 48, 0.78);
-  font-size: 18px;
-}
-
-/* Tall grid tiles */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-/* Every tile has the same aspect ratio */
-.photo {
-  aspect-ratio: 3 / 4; /* change to 3/4 if you want taller portrait tiles */
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(42, 34, 48, 0.1);
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 12px 24px rgba(26, 15, 34, 0.1);
-  margin: 0;
-}
-
-/* Force image to fill the tile uniformly */
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transform: scale(1.02);
-  transition: transform 0.35s ease;
-}
-
-.photo:hover img {
-  transform: scale(1.08);
-}
-
-@media (max-width: 1200px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 720px) {
-  .photo-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* Day blocks */
 .day-block {
   display: grid;
   gap: 14px;
@@ -564,67 +426,170 @@ h3 {
   grid-column: 1 / -1;
 }
 
-/* Day 2 is a single card centered */
-.plan-grid--day2 {
-  grid-template-columns: 1fr;
-}
-
-/* 4 items = 2x2 grid on desktop */
-.palette-grid--4 {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-/* Bigger rectangular swatches */
-.swatches-row--rect {
-  width: 100%;
-  gap: 10px;
-}
-
-.swatch--rect {
-  width: 100%;
-  height: 56px;
-  border-radius: 14px;
-  background: var(--c);
+/* Map embeds */
+.map-embed {
+  height: 240px;
+  border-radius: 18px;
+  overflow: hidden;
   border: 1px solid rgba(42, 34, 48, 0.1);
-  box-shadow: 0 12px 24px rgba(26, 15, 34, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 12px 30px rgba(26, 15, 34, 0.08);
+  margin: 12px 0;
 }
 
-/* Ensure rectangles sit nicely in a row */
-.swatches-row--rect .swatch--rect {
-  flex: 1 1 0;
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-/* Make cards feel less tight with bigger swatches */
-.palette-card {
-  padding: 20px;
+.bullets {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(42, 34, 48, 0.7);
 }
 
-/* Reference image centered under palettes */
-.palette-ref {
-  margin: 18px auto 0;
-  width: min(920px, 100%);
+/* =========================
+   STORY
+========================= */
+/* Full-width story text + photo grid below */
+.story-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.story-card p {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(42, 34, 48, 0.78);
+  font-size: 18px;
+}
+
+/* Photo grid with consistent tile size */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.photo {
+  aspect-ratio: 3 / 4;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid rgba(42, 34, 48, 0.1);
   background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 18px 50px rgba(26, 15, 34, 0.1);
+  box-shadow: 0 12px 24px rgba(26, 15, 34, 0.1);
+  margin: 0;
 }
 
-.palette-ref img {
+.photo img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   display: block;
+  transform: scale(1.02);
+  transition: transform 0.35s ease;
 }
 
-/* Responsive */
+.photo:hover img {
+  transform: scale(1.08);
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  border-top: 1px solid rgba(42, 34, 48, 0.1);
+  padding: 24px 0;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* =========================
+   REVEAL
+========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  #heroFx {
+    display: none;
+  }
+}
+
+/* =========================
+   RESPONSIVE (single place)
+========================= */
 @media (max-width: 1200px) {
+  .hero__names {
+    font-size: 96px;
+  }
+
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .palette-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .palette-grid--4 {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 720px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero__names {
+    font-size: 74px;
+  }
+
+  .hero__subtitle {
+    font-size: 22px;
+  }
+
+  .meta-pill {
+    min-width: 160px;
+  }
+
+  .palette-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-grid {
+    grid-template-columns: 1fr;
+  }
+
   .swatch--rect {
     height: 50px;
     border-radius: 12px;
