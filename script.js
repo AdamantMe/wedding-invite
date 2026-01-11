@@ -16,6 +16,281 @@ revealEls.forEach((el) => revealIO.observe(el));
 const y = document.getElementById("year");
 if (y) y.textContent = new Date().getFullYear();
 
+// -------------------- i18n (EN / UK / RU) --------------------
+const dict = {
+  en: {
+    "nav.welcome": "Welcome",
+    "nav.colors": "Colors",
+    "nav.plan": "Plan",
+    "nav.story": "Our Story",
+
+    "hero.subtitle": "Welcome to our wedding invitation.",
+    "hero.date": "Date",
+    "hero.city": "City",
+    "hero.cityValue": "Praha",
+    "hero.ctaPlan": "See the plan",
+    "hero.ctaPalette": "Pick a palette",
+
+    "colors.title": "Wedding Dark & Moody outfit palette",
+    "colors.subtitle": "Click a palette to open references.",
+    "palette.burgundy": "Deep Burgundy Choco",
+    "palette.olive": "Sexy Olive",
+    "palette.blue": "Dark Blue",
+    "palette.classy": "Classy Colors",
+
+    "plan.title": "The plan and timeline",
+    "plan.subtitle": "Two days, two vibes. Join us for both if you want.",
+
+    "day1.title": "Day 1 — Wedding Day",
+    "day1.subtitle": "Ceremony, photos, and the main celebration.",
+    "ceremony.title": "Ceremony place",
+    "ceremony.subtitle": "Meeting and having a Ceremony",
+    "free.title": "Free time",
+    "free.subtitle": "Photos, walk, Champagne, rest.",
+    "free.notes1":
+      "While the young couple are making a wedding photo album, please have a walk in the park and have some fun!",
+    "free.notes2":
+      "You can go directly to the restaurant where some cold drinks and snacks will wait for you!",
+    "party.title": "Party place",
+    "party.subtitle": "Dinner, speeches, and dancing.",
+
+    "day2.title": "Day 2 — Picnic (Optional)",
+    "day2.subtitle":
+      "For anyone who wants to join: a relaxed, humble Picnic to keep celebrating together.",
+    "bbq.title": "Picnic location",
+    "bbq.subtitle": "Come hungry. Come casual. Come for a good time.",
+    "bbq.timeValue": "During noon/afternoon",
+    "bbq.bringValue": "Good mood (and maybe something small to grill)",
+    "bbq.dressValue": "Casual / comfy",
+
+    "nav.gifts": "Gifts",
+
+    "nav.gifts": "Gifts",
+
+    "gifts.title": "Gifts & Flowers",
+    "gifts.subtitle": "A small request, with love.",
+    "gifts.cardTitle": "With all due respect",
+    "gifts.p1": "Your presence is the greatest gift to us — truly.",
+    "gifts.p2":
+      "So please, no traditional gifts like toasters, vacuum cleaners, alcohol, chocolates, or similar.",
+    "gifts.p3":
+      "And no bouquets, please — as beautiful as they are, they fade in a week.",
+    "gifts.p4":
+      "If you would like to give something, we would be very grateful for a small cash contribution to support our young family and future plans.",
+    "gifts.p5":
+      "And if you still feel like bringing a flower… we’d honestly prefer the flower to be in an envelope (cash), so it lasts a little longer.",
+    "gifts.p6":
+      "P.S. We will not say no to a gift that is a car or a vacation trip. 🙂",
+
+    "labels.time": "Time",
+    "labels.address": "Address",
+    "labels.start": "Start",
+    "labels.end": "End",
+    "labels.notes": "Notes",
+    "labels.bring": "What to bring",
+    "labels.dress": "Dress code",
+
+    "story.title": "Our story",
+    "story.subtitle": "A bit about us",
+    "story.howTitle": "How it started",
+    "story.text":
+      "It started with a Tinder match and a first date at Náplavka—easy laughs, river air, and zero awkwardness. Their first real conversation somehow turned into oatmeal dishes, and Daniel’s homemade oatmeal cookies stole the show. Oksana had already seen him baking them on Instagram… and that was the moment her crush turned into something real. And now, two years later, they’re celebrating their anniversary in the best way possible: by getting married. Two years full of challenges, fun, love, and adventures—plus an endless collection of oatmeal recipes along the way.",
+  },
+
+  uk: {
+    "nav.welcome": "Ласкаво просимо",
+    "nav.colors": "Кольори",
+    "nav.plan": "План",
+    "nav.story": "Наша історія",
+
+    "hero.subtitle": "Ласкаво просимо на наше весільне запрошення.",
+    "hero.date": "Дата",
+    "hero.city": "Місто",
+    "hero.cityValue": "Прага",
+    "hero.ctaPlan": "Дивитися план",
+    "hero.ctaPalette": "Обрати палітру",
+
+    "colors.title": "Темна та атмосферна палітра образів",
+    "colors.subtitle": "Натисніть на палітру, щоб відкрити посилання.",
+    "palette.burgundy": "Глибокий бордо та шоколад",
+    "palette.olive": "Спокуслива олива",
+    "palette.blue": "Темно-синя ніч",
+    "palette.classy": "Класичні відтінки",
+
+    "plan.title": "План та розклад",
+    "plan.subtitle":
+      "Два дні — два настрої. Приєднуйтесь до обох, якщо хочете.",
+
+    "day1.title": "День 1 — Весілля",
+    "day1.subtitle": "Церемонія, фото та головне святкування.",
+    "ceremony.title": "Місце церемонії",
+    "ceremony.subtitle": "Зустріч і церемонія",
+    "free.title": "Вільний час",
+    "free.subtitle": "Фото, прогулянка, шампанське, відпочинок.",
+    "free.notes1":
+      "Поки молодята роблять весільні фото, будь ласка, прогуляйтеся парком і гарно проведіть час!",
+    "free.notes2":
+      "Можете одразу йти до ресторану — там на вас чекатимуть прохолодні напої та легкі закуски!",
+    "party.title": "Місце святкування",
+    "party.subtitle": "Вечеря, тости та танці.",
+
+    "day2.title": "День 2 — Picnic (за бажанням)",
+    "day2.subtitle":
+      "Для всіх охочих: невимушене й скромне Picnic, щоб продовжити святкування разом.",
+    "bbq.title": "Локація Picnic",
+    "bbq.subtitle":
+      "Приходьте голодні. Приходьте у зручному. Приходьте просто кайфувати.",
+    "bbq.timeValue": "В обід / після обіду",
+    "bbq.bringValue": "Гарний настрій (і, можливо, щось невелике для грилю)",
+    "bbq.dressValue": "Повсякденно / зручно",
+
+    "nav.gifts": "Подарунки",
+
+    "gifts.title": "Подарунки та квіти",
+    "gifts.subtitle": "Невелике прохання — з любов’ю.",
+    "gifts.cardTitle": "З усією повагою",
+    "gifts.p1": "Ваша присутність — наш найцінніший подарунок. Справді.",
+    "gifts.p2":
+      "Тому, будь ласка, без традиційних подарунків на кшталт тостерів, пилососів, алкоголю, шоколаду чи подібного.",
+    "gifts.p3":
+      "І без букетів, будь ласка — вони прекрасні, але, на жаль, за тиждень зів’януть.",
+    "gifts.p4":
+      "Якщо ви все ж хочете щось подарувати, ми будемо щиро вдячні за невеликий грошовий внесок (готівкою) на підтримку нашої молодої сім’ї та майбутніх планів.",
+    "gifts.p5":
+      "А якщо вам дуже хочеться принести квітку… чесно кажучи, ми б воліли, щоб ця «квітка» була в конверті (готівкою) — так вона порадує нас значно довше.",
+    "gifts.p6":
+      "P.S. Від подарунка у вигляді авто або подорожі/відпустки ми точно не відмовимося 🙂",
+
+    "labels.time": "Час",
+    "labels.address": "Адреса",
+    "labels.start": "Початок",
+    "labels.end": "Кінець",
+    "labels.notes": "Нотатки",
+    "labels.bring": "Що взяти",
+    "labels.dress": "Дрес-код",
+
+    "story.title": "Наша історія",
+    "story.subtitle": "Трішки про нас",
+    "story.howTitle": "Як усе почалося",
+    "story.text":
+      "Все почалося з матчу в Tinder і першого побачення на Náplavka — легкі жарти, повітря біля річки і жодної незручності. Їхня перша справжня розмова раптом перейшла на вівсяні страви, а домашнє вівсяне печиво Даніеля стало хітом. Оксана вже бачила в Instagram, як він його пече… і саме тоді її симпатія перетворилася на щось справжнє. А тепер, через два роки, вони святкують річницю найкращим способом: одружуються. Два роки викликів, веселощів, любові й пригод — і нескінченної колекції вівсяних рецептів.",
+  },
+
+  ru: {
+    "nav.welcome": "Добро пожаловать",
+    "nav.colors": "Цвета",
+    "nav.plan": "План",
+    "nav.story": "Наша история",
+
+    "hero.subtitle": "Добро пожаловать на наше свадебное приглашение.",
+    "hero.date": "Дата",
+    "hero.city": "Город",
+    "hero.cityValue": "Прага",
+    "hero.ctaPlan": "Смотреть план",
+    "hero.ctaPalette": "Выбрать палитру",
+
+    "colors.title": "Тёмная и атмосферная палитра образов",
+    "colors.subtitle": "Нажмите на палитру, чтобы открыть ссылки.",
+    "palette.burgundy": "Глубокий бордо и шоколад",
+    "palette.olive": "Соблазнительная олива",
+    "palette.blue": "Тёмно-синяя ночь",
+    "palette.classy": "Классические оттенки",
+
+    "plan.title": "План и таймлайн",
+    "plan.subtitle":
+      "Два дня — два настроения. Присоединяйтесь к обоим, если хотите.",
+
+    "day1.title": "День 1 — Свадьба",
+    "day1.subtitle": "Церемония, фото и главное празднование.",
+    "ceremony.title": "Место церемонии",
+    "ceremony.subtitle": "Встреча и церемония",
+    "free.title": "Свободное время",
+    "free.subtitle": "Фото, прогулка, шампанское, отдых.",
+    "free.notes1":
+      "Пока молодожёны делают свадебные фото, пожалуйста, прогуляйтесь по парку и хорошо проведите время!",
+    "free.notes2":
+      "Можно сразу идти в ресторан — там вас будут ждать прохладные напитки и лёгкие закуски!",
+    "party.title": "Место празднования",
+    "party.subtitle": "Ужин, тосты и танцы.",
+
+    "day2.title": "День 2 — Picnic (по желанию)",
+    "day2.subtitle":
+      "Для всех желающих: спокойное и скромное Picnic, чтобы продолжить праздновать вместе.",
+    "bbq.title": "Локация Picnic",
+    "bbq.subtitle":
+      "Приходите голодными. Приходите в удобном. Приходите просто отлично провести время.",
+    "bbq.timeValue": "В обед / после обеда",
+    "bbq.bringValue":
+      "Хорошее настроение (и, возможно, что-то небольшое для гриля)",
+    "bbq.dressValue": "Повседневно / удобно",
+
+    "nav.gifts": "Подарки",
+
+    "gifts.title": "Подарки и цветы",
+    "gifts.subtitle": "Небольшая просьба — с любовью.",
+    "gifts.cardTitle": "С большим уважением",
+    "gifts.p1": "Ваше присутствие — самый большой подарок для нас. Правда.",
+    "gifts.p2":
+      "Поэтому мы бы попросили без традиционных подарков вроде тостеров, пылесосов, алкоголя, шоколада и тому подобного.",
+
+    "gifts.p3":
+      "И без букетов, пожалуйста — они очень красивые, но, увы, через неделю завянут.",
+    "gifts.p4":
+      "Если вы всё же хотите сделать подарок, нам будет приятно получить небольшой денежный вклад — на нашу молодую семью и будущие планы.",
+    "gifts.p5":
+      "А если вам хочется принести цветок — можно один, символичный, «про нас» (тот, который у вас ассоциируется с нами). Мы соберём все такие цветы в один большой букет от наших любимых людей.",
+    "gifts.p6":
+      "P.S. Но если вдруг это будет машина или путешествие — мы, конечно, не откажемся 🙂",
+
+    "labels.time": "Время",
+    "labels.address": "Адрес",
+    "labels.start": "Начало",
+    "labels.end": "Конец",
+    "labels.notes": "Примечания",
+    "labels.bring": "Что взять",
+    "labels.dress": "Дресс-код",
+
+    "story.title": "Наша история",
+    "story.subtitle": "Немного о нас",
+    "story.howTitle": "С чего всё началось",
+    "story.text":
+      "Всё началось с матча в Tinder и первого свидания на Náplavka — лёгкие шутки, воздух у реки и ноль неловкости. Их первый настоящий разговор внезапно превратился в обсуждение овсяных блюд, а домашнее овсяное печенье Даниэля стало главным хитом. Оксана уже видела в Instagram, как он его готовит… и именно тогда её симпатия превратилась во что-то настоящее. А теперь, два года спустя, они отмечают годовщину самым лучшим способом: женятся. Два года вызовов, веселья, любви и приключений — и бесконечной коллекции овсяных рецептов.",
+  },
+};
+
+function detectLang() {
+  const saved = localStorage.getItem("lang");
+  if (saved && dict[saved]) return saved;
+
+  const n = (navigator.language || "en").toLowerCase();
+  if (n.startsWith("uk")) return "uk";
+  if (n.startsWith("ru")) return "ru";
+  return "en";
+}
+
+function applyLang(lang) {
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const value =
+      (dict[lang] && dict[lang][key]) || (dict.en && dict.en[key]) || "";
+    if (value) el.textContent = value;
+  });
+
+  document.querySelectorAll(".lang-btn").forEach((b) => {
+    b.classList.toggle("is-active", b.dataset.lang === lang);
+  });
+
+  localStorage.setItem("lang", lang);
+}
+
+document.querySelectorAll(".lang-btn").forEach((btn) => {
+  btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+});
+
+applyLang(detectLang());
+
 // -------------------- Fireworks (WELCOME ONLY) --------------------
 (() => {
   const prefersReduced = window.matchMedia(
@@ -259,3 +534,5 @@ if (y) y.textContent = new Date().getFullYear();
 
   heroIO.observe(hero);
 })();
+
+(() => {})();

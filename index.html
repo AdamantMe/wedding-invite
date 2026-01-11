@@ -10,18 +10,24 @@
     <header class="topbar">
       <div class="container topbar__inner">
         <nav class="nav">
-          <a href="#welcome">Welcome</a>
-          <a href="#colors">Colors</a>
-          <a href="#plan">Plan</a>
-          <a href="#story">Our Story</a>
+          <a href="#welcome" data-i18n="nav.welcome">Welcome</a>
+          <a href="#colors" data-i18n="nav.colors">Colors</a>
+          <a href="#plan" data-i18n="nav.plan">Plan</a>
+          <a href="#gifts" data-i18n="nav.gifts">Gifts</a>
+          <a href="#story" data-i18n="nav.story">Our Story</a>
         </nav>
+
+        <div class="lang-switch" aria-label="Language switcher">
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="uk">UA</button>
+          <button type="button" class="lang-btn" data-lang="ru">RU</button>
+        </div>
       </div>
     </header>
 
     <main>
       <!-- HERO / WELCOME -->
       <section id="welcome" class="section hero">
-        <!-- Fireworks only for welcome -->
         <canvas id="heroFx" aria-hidden="true"></canvas>
 
         <div class="container hero__inner">
@@ -29,22 +35,32 @@
             <h1 class="hero__names">
               Daniel <span class="amp">&</span> Oksana
             </h1>
-            <p class="hero__subtitle">Welcome to our wedding invitation.</p>
+
+            <p class="hero__subtitle" data-i18n="hero.subtitle">
+              Welcome to our wedding invitation.
+            </p>
 
             <div class="hero__meta">
               <div class="meta-pill">
-                <div class="meta-label">Date</div>
+                <div class="meta-label" data-i18n="hero.date">Date</div>
                 <div class="meta-value">14/07/2026</div>
               </div>
               <div class="meta-pill">
-                <div class="meta-label">City</div>
-                <div class="meta-value">Praha</div>
+                <div class="meta-label" data-i18n="hero.city">City</div>
+                <div class="meta-value" data-i18n="hero.cityValue">Praha</div>
               </div>
             </div>
 
             <div class="hero__actions">
-              <a class="btn" href="#plan">See the plan</a>
-              <a class="btn btn--ghost" href="#colors">Pick a palette</a>
+              <a class="btn" href="#plan" data-i18n="hero.ctaPlan"
+                >See the plan</a
+              >
+              <a
+                class="btn btn--ghost"
+                href="#colors"
+                data-i18n="hero.ctaPalette"
+                >Pick a palette</a
+              >
             </div>
           </div>
         </div>
@@ -54,8 +70,12 @@
       <section id="colors" class="section">
         <div class="container">
           <div class="section__head reveal">
-            <h2>Wedding Dark & Moody outfit palette</h2>
-            <p class="muted">Click a palette to open references.</p>
+            <h2 data-i18n="colors.title">
+              Wedding Dark & Moody outfit palette
+            </h2>
+            <p class="muted" data-i18n="colors.subtitle">
+              Click a palette to open references.
+            </p>
           </div>
 
           <div class="palette-grid palette-grid--4">
@@ -69,7 +89,9 @@
                 <span class="swatch swatch--rect" style="--c: #34180c"></span>
                 <span class="swatch swatch--rect" style="--c: #1d0b0c"></span>
               </div>
-              <div class="palette-card__label">Deep Burgundy Choco</div>
+              <div class="palette-card__label" data-i18n="palette.burgundy">
+                Deep Burgundy Choco
+              </div>
             </a>
 
             <a class="palette-card reveal" aria-label="Sexy Olive palette">
@@ -79,7 +101,9 @@
                 <span class="swatch swatch--rect" style="--c: #0d1608"></span>
                 <span class="swatch swatch--rect" style="--c: #070b04"></span>
               </div>
-              <div class="palette-card__label">Sexy Olive</div>
+              <div class="palette-card__label" data-i18n="palette.olive">
+                Sexy Olive
+              </div>
             </a>
 
             <a class="palette-card reveal" aria-label="Dark blue palette">
@@ -89,7 +113,9 @@
                 <span class="swatch swatch--rect" style="--c: #031023"></span>
                 <span class="swatch swatch--rect" style="--c: #010814"></span>
               </div>
-              <div class="palette-card__label">Dark Blue</div>
+              <div class="palette-card__label" data-i18n="palette.blue">
+                Dark Blue
+              </div>
             </a>
 
             <a class="palette-card reveal" aria-label="Classy colors palette">
@@ -99,11 +125,12 @@
                 <span class="swatch swatch--rect" style="--c: #2a2325"></span>
                 <span class="swatch swatch--rect" style="--c: #080705"></span>
               </div>
-              <div class="palette-card__label">Classy Colors</div>
+              <div class="palette-card__label" data-i18n="palette.classy">
+                Classy Colors
+              </div>
             </a>
           </div>
 
-          <!-- Reference image below, centered -->
           <figure
             class="palette-ref reveal"
             aria-label="How to dress reference"
@@ -121,8 +148,8 @@
       <section id="plan" class="section section--alt">
         <div class="container">
           <div class="section__head reveal">
-            <h2>The plan and timeline</h2>
-            <p class="muted">
+            <h2 data-i18n="plan.title">The plan and timeline</h2>
+            <p class="muted" data-i18n="plan.subtitle">
               Two days, two vibes. Join us for both if you want.
             </p>
           </div>
@@ -130,16 +157,20 @@
           <!-- Day 1 -->
           <div class="day-block reveal">
             <div class="day-head">
-              <h3 class="day-title">Day 1 — Wedding Day</h3>
-              <p class="muted day-subtitle">
+              <h3 class="day-title" data-i18n="day1.title">
+                Day 1 — Wedding Day
+              </h3>
+              <p class="muted day-subtitle" data-i18n="day1.subtitle">
                 Ceremony, photos, and the main celebration.
               </p>
             </div>
 
             <div class="plan-grid">
               <article class="card reveal">
-                <h3>Ceremony place</h3>
-                <p class="muted">Meeting and having a Ceremony</p>
+                <h3 data-i18n="ceremony.title">Ceremony place</h3>
+                <p class="muted" data-i18n="ceremony.subtitle">
+                  Meeting and having a Ceremony
+                </p>
 
                 <div class="map-embed" aria-label="Havlíčkovy sady map">
                   <iframe
@@ -150,14 +181,16 @@
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                  >
-                  </iframe>
+                  ></iframe>
                 </div>
 
                 <ul class="bullets">
-                  <li>Time: <span class="muted">12:00</span></li>
                   <li>
-                    Address:
+                    <span data-i18n="labels.time">Time</span>:
+                    <span class="muted">12:00</span>
+                  </li>
+                  <li>
+                    <span data-i18n="labels.address">Address</span>:
                     <span class="muted"
                       >Havlíčkovy sady 1369, 120 00 Praha 2-Vinohrady</span
                     >
@@ -166,20 +199,28 @@
               </article>
 
               <article class="card reveal">
-                <h3>Free time</h3>
-                <p class="muted">Photos, walk, Champagne, rest.</p>
+                <h3 data-i18n="free.title">Free time</h3>
+                <p class="muted" data-i18n="free.subtitle">
+                  Photos, walk, Champagne, rest.
+                </p>
                 <ul class="bullets">
-                  <li>Start: <span class="muted">13:30</span></li>
-                  <li>End: <span class="muted">15:00</span></li>
                   <li>
-                    Notes:
-                    <span class="muted">
+                    <span data-i18n="labels.start">Start</span>:
+                    <span class="muted">13:30</span>
+                  </li>
+                  <li>
+                    <span data-i18n="labels.end">End</span>:
+                    <span class="muted">15:00</span>
+                  </li>
+                  <li>
+                    <span data-i18n="labels.notes">Notes</span>:
+                    <span class="muted" data-i18n="free.notes1">
                       While the young couple are making a wedding photo album,
                       please have a walk in the park and have some fun!
                     </span>
                   </li>
                   <li>
-                    <span class="muted">
+                    <span class="muted" data-i18n="free.notes2">
                       You can go directly to the restaurant where some cold
                       drinks and snacks will wait for you!
                     </span>
@@ -188,13 +229,12 @@
               </article>
 
               <article class="card reveal">
-                <h3>Party place</h3>
-                <p class="muted">Dinner, speeches, and dancing.</p>
+                <h3 data-i18n="party.title">Party place</h3>
+                <p class="muted" data-i18n="party.subtitle">
+                  Dinner, speeches, and dancing.
+                </p>
 
-                <div
-                  class="map-embed"
-                  aria-label="Battistova Cihelna 1893 by CAS NA JIDLO map"
-                >
+                <div class="map-embed" aria-label="Party map">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2556.877797059993!2d14.4828322!3d50.144717899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470beba4f9b26e7f%3A0x7ef58b7e7b1000e9!2sBattistova%20Cihelna%201893%20by%20CAS%20NA%20JIDLO!5e0!3m2!1sen!2scz!4v1767127218933!5m2!1sen!2scz"
                     width="100%"
@@ -203,14 +243,16 @@
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                  >
-                  </iframe>
+                  ></iframe>
                 </div>
 
                 <ul class="bullets">
-                  <li>Time: <span class="muted">14:30</span></li>
                   <li>
-                    Address:
+                    <span data-i18n="labels.time">Time</span>:
+                    <span class="muted">14:30</span>
+                  </li>
+                  <li>
+                    <span data-i18n="labels.address">Address</span>:
                     <span class="muted">Prácheňská 24, 182 00 Praha 8</span>
                   </li>
                 </ul>
@@ -221,8 +263,10 @@
           <!-- Day 2 -->
           <div class="day-block reveal">
             <div class="day-head">
-              <h3 class="day-title">Day 2 — Picnic? (Maybe)</h3>
-              <p class="muted day-subtitle">
+              <h3 class="day-title" data-i18n="day2.title">
+                Day 2 — BBQ (Optional)
+              </h3>
+              <p class="muted day-subtitle" data-i18n="day2.subtitle">
                 For anyone who wants to join: a relaxed, humble BBQ to keep
                 celebrating together.
               </p>
@@ -230,38 +274,86 @@
 
             <div class="plan-grid plan-grid--day2">
               <article class="card reveal plan-wide">
-                <h3>Picnic location</h3>
-                <p class="muted">
+                <h3 data-i18n="bbq.title">BBQ location</h3>
+                <p class="muted" data-i18n="bbq.subtitle">
                   Come hungry. Come casual. Come for a good time.
                 </p>
 
                 <div class="map-embed" aria-label="BBQ location map">
                   <iframe
-                    src=""
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1279.43239910774!2d14.41756852891905!3d50.107537568457886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b957ca8eeba73%3A0x843980b9fc4878e1!2zS3bEm3RuYXTDoSBsb3VrYQ!5e0!3m2!1sen!2scz!4v1768144871308!5m2!1sen!2scz"
                     width="100%"
                     height="240"
                     style="border: 0"
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                  >
-                  </iframe>
+                  ></iframe>
                 </div>
 
                 <ul class="bullets">
                   <li>
-                    Time: <span class="muted">During noon/afternoon</span>
+                    <span data-i18n="labels.time">Time</span>:
+                    <span class="muted" data-i18n="bbq.timeValue"
+                      >During noon/afternoon</span
+                    >
                   </li>
                   <li>
-                    What to bring:
-                    <span class="muted"
+                    <span data-i18n="labels.bring">What to bring</span>:
+                    <span class="muted" data-i18n="bbq.bringValue"
                       >Good mood (and maybe something small to grill)</span
                     >
                   </li>
-                  <li>Dress code: <span class="muted">Casual / comfy</span></li>
+                  <li>
+                    <span data-i18n="labels.dress">Dress code</span>:
+                    <span class="muted" data-i18n="bbq.dressValue"
+                      >Casual / comfy</span
+                    >
+                  </li>
                 </ul>
               </article>
             </div>
+          </div>
+        </div>
+      </section>
+      <!-- GIFTS -->
+      <section id="gifts" class="section">
+        <div class="container">
+          <div class="section__head reveal">
+            <h2 data-i18n="gifts.title">Gifts & Flowers</h2>
+            <p class="muted" data-i18n="gifts.subtitle">
+              A small request, with love.
+            </p>
+          </div>
+
+          <div class="card reveal">
+            <h3 data-i18n="gifts.cardTitle">With all due respect</h3>
+
+            <p data-i18n="gifts.p1">
+              Your presence is the greatest gift to us. Please, no boxed gifts.
+            </p>
+
+            <p data-i18n="gifts.p2">
+              If you would like to give something, we would truly appreciate a
+              small contribution in cash to support our young family and future
+              plans.
+            </p>
+
+            <p data-i18n="gifts.p3">
+              The same goes for bouquets: instead of many separate arrangements,
+              we would prefer the “flowers” to be a cash contribution.
+            </p>
+
+            <p data-i18n="gifts.p4">
+              And if you still feel like bringing a flower, that would be
+              wonderful — we will gather all the flowers from our guests into
+              one big bouquet.
+            </p>
+
+            <p class="muted" data-i18n="gifts.p5">
+              It will be our favorite bouquet of all: made from the people we
+              love, who came to celebrate with us.
+            </p>
           </div>
         </div>
       </section>
@@ -270,26 +362,15 @@
       <section id="story" class="section">
         <div class="container">
           <div class="section__head reveal">
-            <h2>Our story</h2>
-            <p class="muted">A bit about us</p>
+            <h2 data-i18n="story.title">Our story</h2>
+            <p class="muted" data-i18n="story.subtitle">A bit about us</p>
           </div>
 
           <div class="story-stack">
             <div class="card reveal story-card">
-              <h3>How it started</h3>
-              <p>
-                It began with a random Tinder match—one cute date, a lot of
-                laughter, and that “this feels different” kind of spark. Then
-                Oksana left for Turkey, and instead of fading, the connection
-                grew even stronger from afar. When she returned, Daniel met her
-                at the airport, and from that moment, the two of them were all
-                in. Little by little, Oksana’s visits turned into staying over…
-                and “Daniel’s place” quietly became “their place.” Life tested
-                them with two tough shoulder surgeries, and Oksana stayed right
-                there beside Daniel through every step of recovery. Not long
-                after, Daniel graduated with his BSc, landed a great job, and
-                together they moved into the home they share today—ready for the
-                next chapter.
+              <h3 data-i18n="story.howTitle">How it started</h3>
+              <p data-i18n="story.text">
+                It started with a Tinder match and a first date at Náplavka...
               </p>
             </div>
 
@@ -303,7 +384,7 @@
               </figure>
               <figure class="photo">
                 <img
-                  src="assets/kids.jpg"
+                  src="assets/Xmas.jpg"
                   alt="Daniel and Oksana"
                   loading="lazy"
                 />
@@ -319,11 +400,7 @@
                 />
               </figure>
               <figure class="photo">
-                <img
-                  src="assets/Wedding_oksana_sister.jpg"
-                  alt="Wedding day"
-                  loading="lazy"
-                />
+                <img src="assets/Funny.jpg" alt="Funny moment" loading="lazy" />
               </figure>
               <figure class="photo">
                 <img

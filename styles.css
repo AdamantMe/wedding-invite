@@ -595,3 +595,29 @@ h3 {
     border-radius: 12px;
   }
 }
+.topbar__inner {
+  position: relative;
+  justify-content: center;
+}
+
+.lang-switch {
+  position: absolute;
+  right: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.lang-btn {
+  border: 1px solid rgba(42, 34, 48, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lang-btn.is-active {
+  background: rgba(242, 167, 181, 0.35);
+  border-color: rgba(242, 167, 181, 0.65);
+}
